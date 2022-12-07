@@ -34,6 +34,9 @@ const ResizableTitle = (
           }}
         />
       }
+      onResizeStop={(a, b, c) => {
+        console.log(111, a, b, c);
+      }}
       onResize={onResize}
       draggableOpts={{ enableUserSelectHack: false }}
     >
@@ -91,7 +94,7 @@ const App: React.FC = () => {
         columns={mergeColumns}
         dataSource={data}
         pagination={false}
-        scroll={{ y: 300 }}
+        scroll={{ y: 500, x: 3300 }}
       />
     </React.Fragment>
   );

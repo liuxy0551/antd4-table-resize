@@ -14,44 +14,30 @@ export interface DataType {
 
 const data: DataType[] = getData();
 
-const defaultColumns: ColumnsType<DataType> = [
-  {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
-    width: 240,
-    minWidth: 240,
-    fixed: 'left',
-  },
-  {
-    title: '管理员1',
-    dataIndex: 'admin1',
-    key: 'admin1',
+const list = [];
+for (let i = 1; i < 15; i++) {
+  list.push({
+    title: `管理员${i}`,
+    dataIndex: `admin${i}`,
+    key: `admin${i}`,
+    minWidth: 100,
     width: 200,
-  },
-  {
-    title: '管理员2',
-    dataIndex: 'admin2',
-    key: 'admin2',
-    width: 200,
-  },
-  {
-    title: '管理员3',
-    dataIndex: 'admin3',
-    key: 'admin3',
-    width: 200,
-  },
-  {
-    title: '管理员4',
-    dataIndex: 'admin4',
-    key: 'admin4',
-    width: 200,
-  },
-  {
-    title: '管理员5',
-    dataIndex: 'admin5',
-    key: 'admin5',
-  },
-];
+  });
+}
+list.unshift({
+  title: 'Name',
+  dataIndex: 'name',
+  key: 'name',
+  width: 200,
+  minWidth: 200,
+  fixed: 'left',
+});
+list.push({
+  title: '管理员15',
+  dataIndex: 'admin15',
+  key: 'admin15',
+});
+
+const defaultColumns: ColumnsType<DataType> = list;
 
 export { data, defaultColumns };
