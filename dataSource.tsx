@@ -1,4 +1,6 @@
+import * as React from 'react';
 import type { ColumnsType } from 'antd/es/table';
+import { Checkbox } from 'antd';
 import getData from './getData';
 
 export interface DataType {
@@ -22,6 +24,9 @@ for (let i = 1; i < 15; i++) {
     key: `admin${i}`,
     minWidth: 100,
     width: 200,
+    render: (text) => {
+      return <Checkbox>Checkbox</Checkbox>;
+    },
   });
 }
 list.unshift({
