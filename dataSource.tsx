@@ -11,6 +11,16 @@ export interface DataType {
   admin3?: number;
   admin4?: number;
   admin5?: number;
+  admin6?: number;
+  admin7?: number;
+  admin8?: number;
+  admin9?: number;
+  admin10?: number;
+  admin11?: number;
+  admin12?: number;
+  admin13?: number;
+  admin14?: number;
+  admin15?: number;
   children?: DataType[];
 }
 
@@ -25,7 +35,7 @@ for (let i = 1; i < 15; i++) {
     minWidth: 100,
     width: 200,
     render: (text) => {
-      return <Checkbox>Checkbox</Checkbox>;
+      return <Checkbox checked={text} />;
     },
   });
 }
