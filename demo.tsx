@@ -34,9 +34,6 @@ const ResizableTitle = (
           }}
         />
       }
-      onResizeStop={(a, b, c) => {
-        console.log(111, a, b, c);
-      }}
       onResize={onResize}
       draggableOpts={{ enableUserSelectHack: false }}
     >
