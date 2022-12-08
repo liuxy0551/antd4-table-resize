@@ -35,7 +35,7 @@ for (let i = 1; i < 15; i++) {
     minWidth: 100,
     width: 200,
     render: (text) => {
-      return <Checkbox />;
+      return <Checkbox defaultChecked={text} />;
     },
   });
 }

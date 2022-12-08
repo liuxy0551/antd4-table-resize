@@ -1,11 +1,11 @@
 import React, { useState, useMemo } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
-import { Table } from 'antd';
+import { Form, Table } from 'antd';
 import type { ColumnsType, ColumnType } from 'antd/es/table';
 import type { ResizeCallbackData } from 'react-resizable';
 import { Resizable } from 'react-resizable';
-import { DataType, data, defaultColumns } from './dataSource';
+import { DataType, data, defaultColumns } from './dataAndColumns';
 import { VList } from 'virtuallist-antd';
 
 const ResizableTitle = (
@@ -44,6 +44,7 @@ const ResizableTitle = (
 };
 
 const App: React.FC = () => {
+  const [form] = Form.useForm();
   const [columns, setColumns] = useState<ColumnsType<DataType>>(defaultColumns);
 
   // getWidth 可选，column 的 minWidth 和 maxWidth 可以控制列的最小最大宽度
@@ -82,23 +83,32 @@ const App: React.FC = () => {
     return VList({ height: 1000 });
   }, []);
 
+  // 勾选权限
+  const handleItemChange = (changedFields) => {
+    console.log(111, changedFields);
+  };
+
   return (
     <React.Fragment>
-      <Table
-        className="dt-table-header-user-select-none"
-        defaultExpandAllRows
-        bordered={false}
-        components={{
-          ...virtualComponent,
-          header: {
-            cell: ResizableTitle,
-          },
-        }}
-        columns={mergeColumns}
-        dataSource={data}
-        pagination={false}
-        scroll={{ y: 1000, x: 3300 }}
-      />
+      <Form form={form} onFieldsChange={handleItemChange}>
+        <Form.Item name="table">
+          <Table
+            className="dt-table-header-user-select-none"
+            defaultExpandAllRows
+            bordered={false}
+            components={{
+              ...virtualComponent,
+              header: {
+                cell: ResizableTitle,
+              },
+            }}
+            columns={mergeColumns}
+            dataSource={data}
+            pagination={false}
+            scroll={{ y: 1000, x: 3300 }}
+          />
+        </Form.Item>
+      </Form>
     </React.Fragment>
   );
 };

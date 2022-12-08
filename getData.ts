@@ -1,4 +1,5 @@
 export default () => {
+  const length = 5;
   const list = [
     {
       key: '',
@@ -358,7 +359,7 @@ export default () => {
     return arr;
   };
 
-  for (let i = 1; i <= 50; i++) {
+  for (let i = 1; i <= length; i++) {
     data.push(loop(i, JSON.parse(JSON.stringify(list)))[0]);
   }
 
