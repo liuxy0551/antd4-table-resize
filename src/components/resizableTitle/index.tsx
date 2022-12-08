@@ -8,10 +8,14 @@ export default (
       e: React.SyntheticEvent<Element>,
       data: ResizeCallbackData
     ) => void;
+    onResizeStop: (
+      e: React.SyntheticEvent<Element>,
+      data: ResizeCallbackData
+    ) => void;
     width: number;
   }
 ) => {
-  const { onResize, width, ...restProps } = props;
+  const { onResize, onResizeStop, width, ...restProps } = props;
 
   if (!width) {
     return <th {...restProps} />;
@@ -30,6 +34,7 @@ export default (
         />
       }
       onResize={onResize}
+      onResizeStop={onResizeStop}
       draggableOpts={{ enableUserSelectHack: false }}
     >
       <th {...restProps} />

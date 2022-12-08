@@ -1,6 +1,5 @@
-import * as React from 'react';
 import type { ColumnsType } from 'antd/es/table';
-import { Checkbox } from 'antd';
+import { Form, Checkbox } from 'antd';
 
 /**
  * 造数据
@@ -38,21 +37,46 @@ const getDataSource = (length = 5) => {
             {
               key: '21',
               name: '角色列表',
-              admin1: false,
-              admin2: true,
-              admin3: false,
-              admin4: true,
-              admin5: true,
-              admin6: true,
-              admin7: false,
-              admin8: true,
-              admin9: false,
-              admin10: false,
-              admin11: false,
-              admin12: false,
-              admin13: false,
-              admin14: false,
-              admin15: false,
+              children: [
+                {
+                  key: '211',
+                  name: '查看',
+                  admin1: false,
+                  admin2: true,
+                  admin3: false,
+                  admin4: true,
+                  admin5: true,
+                  admin6: true,
+                  admin7: false,
+                  admin8: true,
+                  admin9: false,
+                  admin10: false,
+                  admin11: false,
+                  admin12: false,
+                  admin13: false,
+                  admin14: false,
+                  admin15: false,
+                },
+                {
+                  key: '212',
+                  name: '编辑',
+                  admin1: false,
+                  admin2: true,
+                  admin3: false,
+                  admin4: true,
+                  admin5: true,
+                  admin6: true,
+                  admin7: false,
+                  admin8: true,
+                  admin9: false,
+                  admin10: false,
+                  admin11: false,
+                  admin12: false,
+                  admin13: false,
+                  admin14: false,
+                  admin15: false,
+                },
+              ],
             },
           ],
         },
@@ -358,7 +382,7 @@ const getDataSource = (length = 5) => {
   const loop = (i, arr = []) => {
     arr.forEach((item) => {
       !item.key.includes('-') && (item.key = `${i}-${item.key}`);
-      !item.name.includes('-') && (item.name = `${i}-${item.name}`);
+      !item.name.includes('-') && (item.name = `${item.key}-${item.name}`);
       if (item.children?.length) {
         loop(i, item.children);
       }
@@ -386,8 +410,19 @@ const getDefaultColumns = () => {
       key: `admin${i}`,
       minWidth: 100,
       width: 200,
-      render: (text) => {
-        return <Checkbox defaultChecked={text} />;
+      render: (text, record) => {
+        return [true, false].includes(record.admin1) ? (
+          <Form.Item
+            name={`${record.key}-${i}`}
+            valuePropName="checked"
+            initialValue={text}
+            {...{ record }}
+          >
+            <Checkbox />
+          </Form.Item>
+        ) : (
+          ''
+        );
       },
     });
   }
@@ -408,10 +443,10 @@ const getDefaultColumns = () => {
 };
 
 /**
- * getWidth 方法可选，使用后可控制列宽的最大最小宽度
+ * geColumntWidth 方法可选，使用后可控制列宽的最大最小宽度
  * column 的 minWidth 和 maxWidth 可以设置列在拖拽时的最大最小宽度
  */
-const getWidth = (width, column) => {
+const geColumntWidth = (width, column) => {
   const minWidth = column.minWidth || 80;
   const maxWidth = column.maxWidth || 1000;
   if (width > maxWidth) {
@@ -423,4 +458,4 @@ const getWidth = (width, column) => {
   }
 };
 
-export { getDataSource, getDefaultColumns, getWidth };
+export { getDataSource, getDefaultColumns, geColumntWidth };

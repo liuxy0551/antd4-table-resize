@@ -13,10 +13,20 @@
   cursor: col-resize;
 }
 
+.ant-table-wrapper {
+  border: 1px red solid;
+}
 .dt-table-header-user-select-none tr > th {
   user-select: none; /* Chrome and Opera */
   -webkit-user-select: none; /* Safari */
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
+}
+
+.btn-box {
+  margin-bottom: 20px;
+}
+.ant-form-item {
+  margin-bottom: 0;
 }
