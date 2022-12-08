@@ -9,7 +9,7 @@ import ResizableTitle from './components/resizableTitle';
 import { dataSource, getDefaultColumns, geColumntWidth } from './utils';
 
 const App: React.FC = () => {
-  const tableHeight = 600;
+  const tableHeight = 600; 
   const [form] = Form.useForm();
   const [columns, setColumns] = useState<ColumnsType>(getDefaultColumns());
   const [result, setResult] = useState([]);
