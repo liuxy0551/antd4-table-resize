@@ -35,12 +35,12 @@ for (let i = 1; i < 15; i++) {
     minWidth: 100,
     width: 200,
     render: (text) => {
-      return <Checkbox checked={text} />;
+      return <Checkbox />;
     },
   });
 }
 list.unshift({
-  title: 'Name',
+  title: '权限名称',
   dataIndex: 'name',
   key: 'name',
   width: 200,

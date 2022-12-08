@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Table } from 'antd';
@@ -6,6 +6,7 @@ import type { ColumnsType, ColumnType } from 'antd/es/table';
 import type { ResizeCallbackData } from 'react-resizable';
 import { Resizable } from 'react-resizable';
 import { DataType, data, defaultColumns } from './dataSource';
+import { VList } from 'virtuallist-antd';
 
 const ResizableTitle = (
   props: React.HTMLAttributes<any> & {
@@ -45,10 +46,10 @@ const ResizableTitle = (
 const App: React.FC = () => {
   const [columns, setColumns] = useState<ColumnsType<DataType>>(defaultColumns);
 
-  // minWidth、maxWidth 可选
+  // getWidth 可选，column 的 minWidth 和 maxWidth 可以控制列的最小最大宽度
   const getWidth = (width, column) => {
     const minWidth = column.minWidth || 80;
-    const maxWidth = column.maxWidth || 8000;
+    const maxWidth = column.maxWidth || 1000;
     if (width > maxWidth) {
       return maxWidth;
     } else if (width < minWidth) {
@@ -77,6 +78,10 @@ const App: React.FC = () => {
     }),
   }));
 
+  const virtualComponent = useMemo(() => {
+    return VList({ height: 1000 });
+  }, []);
+
   return (
     <React.Fragment>
       <Table
@@ -84,6 +89,7 @@ const App: React.FC = () => {
         defaultExpandAllRows
         bordered={false}
         components={{
+          ...virtualComponent,
           header: {
             cell: ResizableTitle,
           },
@@ -91,7 +97,7 @@ const App: React.FC = () => {
         columns={mergeColumns}
         dataSource={data}
         pagination={false}
-        scroll={{ y: 500, x: 3300 }}
+        scroll={{ y: 1000, x: 3300 }}
       />
     </React.Fragment>
   );

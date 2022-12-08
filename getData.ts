@@ -100,11 +100,11 @@ export default () => {
         },
         {
           key: '4',
-          name: '租户管理',
+          name: 'license管理',
           children: [
             {
               key: '41',
-              name: '租户列表',
+              name: 'license列表',
               children: [
                 {
                   key: '411',
@@ -150,11 +150,11 @@ export default () => {
         },
         {
           key: '5',
-          name: '租户管理',
+          name: '用户对接',
           children: [
             {
               key: '51',
-              name: '租户列表',
+              name: '用户列表',
               children: [
                 {
                   key: '511',
@@ -200,11 +200,11 @@ export default () => {
         },
         {
           key: '6',
-          name: '租户管理',
+          name: '日志管理',
           children: [
             {
               key: '61',
-              name: '租户列表',
+              name: '日志列表',
               children: [
                 {
                   key: '611',
@@ -248,6 +248,100 @@ export default () => {
             },
           ],
         },
+        {
+          key: '7',
+          name: '消息管理',
+          children: [
+            {
+              key: '71',
+              name: '消息列表',
+              children: [
+                {
+                  key: '711',
+                  name: '查看',
+                  admin1: true,
+                  admin2: false,
+                  admin3: false,
+                  admin4: true,
+                  admin5: true,
+                  admin6: true,
+                  admin7: false,
+                  admin8: true,
+                  admin9: false,
+                  admin10: false,
+                  admin11: false,
+                  admin12: false,
+                  admin13: false,
+                  admin14: false,
+                  admin15: false,
+                },
+                {
+                  key: '712',
+                  name: '编辑',
+                  admin1: true,
+                  admin2: false,
+                  admin3: false,
+                  admin4: true,
+                  admin5: true,
+                  admin6: true,
+                  admin7: false,
+                  admin8: true,
+                  admin9: false,
+                  admin10: false,
+                  admin11: false,
+                  admin12: false,
+                  admin13: false,
+                  admin14: false,
+                  admin15: false,
+                },
+              ],
+            },
+            {
+              key: '72',
+              name: '回复列表',
+              children: [
+                {
+                  key: '721',
+                  name: '查看',
+                  admin1: true,
+                  admin2: false,
+                  admin3: false,
+                  admin4: true,
+                  admin5: true,
+                  admin6: true,
+                  admin7: false,
+                  admin8: true,
+                  admin9: false,
+                  admin10: false,
+                  admin11: false,
+                  admin12: false,
+                  admin13: false,
+                  admin14: false,
+                  admin15: false,
+                },
+                {
+                  key: '722',
+                  name: '编辑',
+                  admin1: true,
+                  admin2: false,
+                  admin3: false,
+                  admin4: true,
+                  admin5: true,
+                  admin6: true,
+                  admin7: false,
+                  admin8: true,
+                  admin9: false,
+                  admin10: false,
+                  admin11: false,
+                  admin12: false,
+                  admin13: false,
+                  admin14: false,
+                  admin15: false,
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
   ];
@@ -264,7 +358,7 @@ export default () => {
     return arr;
   };
 
-  for (let i = 1; i <= 5; i++) {
+  for (let i = 1; i <= 50; i++) {
     data.push(loop(i, JSON.parse(JSON.stringify(list)))[0]);
   }
 
