@@ -1,5 +1,8 @@
-export default () => {
-  const length = 5;
+/**
+ * 造数据
+ * @param length 数据条数
+ */
+const getDataSource = (length = 5) => {
   const list = [
     {
       key: '',
@@ -365,3 +368,21 @@ export default () => {
 
   return data;
 };
+
+/**
+ * getWidth 方法可选，使用后可控制列宽的最大最小宽度
+ * column 的 minWidth 和 maxWidth 可以设置列在拖拽时的最大最小宽度
+ */
+const getWidth = (width, column) => {
+  const minWidth = column.minWidth || 80;
+  const maxWidth = column.maxWidth || 1000;
+  if (width > maxWidth) {
+    return maxWidth;
+  } else if (width < minWidth) {
+    return minWidth;
+  } else {
+    return width;
+  }
+};
+
+export { getDataSource, getWidth };

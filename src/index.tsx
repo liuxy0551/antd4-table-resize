@@ -4,61 +4,14 @@ import './index.css';
 import { Form, Table } from 'antd';
 import type { ColumnsType, ColumnType } from 'antd/es/table';
 import type { ResizeCallbackData } from 'react-resizable';
-import { Resizable } from 'react-resizable';
-import { DataType, data, defaultColumns } from './dataAndColumns';
 import { VList } from 'virtuallist-antd';
-
-const ResizableTitle = (
-  props: React.HTMLAttributes<any> & {
-    onResize: (
-      e: React.SyntheticEvent<Element>,
-      data: ResizeCallbackData
-    ) => void;
-    width: number;
-  }
-) => {
-  const { onResize, width, ...restProps } = props;
-
-  if (!width) {
-    return <th {...restProps} />;
-  }
-
-  return (
-    <Resizable
-      width={width}
-      height={0}
-      handle={
-        <span
-          className="react-resizable-handle"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        />
-      }
-      onResize={onResize}
-      draggableOpts={{ enableUserSelectHack: false }}
-    >
-      <th {...restProps} />
-    </Resizable>
-  );
-};
+import { getWidth } from './utils';
+import { DataType, data, defaultColumns } from './dataAndColumns';
+import ResizableTitle from './components/resizableTitle';
 
 const App: React.FC = () => {
   const [form] = Form.useForm();
   const [columns, setColumns] = useState<ColumnsType<DataType>>(defaultColumns);
-
-  // getWidth 可选，column 的 minWidth 和 maxWidth 可以控制列的最小最大宽度
-  const getWidth = (width, column) => {
-    const minWidth = column.minWidth || 80;
-    const maxWidth = column.maxWidth || 1000;
-    if (width > maxWidth) {
-      return maxWidth;
-    } else if (width < minWidth) {
-      return minWidth;
-    } else {
-      return width;
-    }
-  };
 
   const handleResize: Function =
     (index: number) =>
