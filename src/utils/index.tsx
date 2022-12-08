@@ -1,3 +1,7 @@
+import * as React from 'react';
+import type { ColumnsType } from 'antd/es/table';
+import { Checkbox } from 'antd';
+
 /**
  * 造数据
  * @param length 数据条数
@@ -350,7 +354,7 @@ const getDataSource = (length = 5) => {
     },
   ];
 
-  const data = [];
+  const dataSource = [];
   const loop = (i, arr = []) => {
     arr.forEach((item) => {
       !item.key.includes('-') && (item.key = `${i}-${item.key}`);
@@ -363,10 +367,44 @@ const getDataSource = (length = 5) => {
   };
 
   for (let i = 1; i <= length; i++) {
-    data.push(loop(i, JSON.parse(JSON.stringify(list)))[0]);
+    dataSource.push(loop(i, JSON.parse(JSON.stringify(list)))[0]);
   }
 
-  return data;
+  return dataSource;
+};
+
+/**
+ * 初始化表格列
+ */
+const getDefaultColumns = () => {
+  const list: ColumnsType = [];
+  const length = 15;
+  for (let i = 1; i < length; i++) {
+    list.push({
+      title: `管理员${i}`,
+      dataIndex: `admin${i}`,
+      key: `admin${i}`,
+      minWidth: 100,
+      width: 200,
+      render: (text) => {
+        return <Checkbox defaultChecked={text} />;
+      },
+    });
+  }
+  list.unshift({
+    title: '权限名称',
+    dataIndex: 'name',
+    key: 'name',
+    width: 200,
+    minWidth: 200,
+    fixed: 'left',
+  });
+  list.push({
+    title: `管理员${length}`,
+    dataIndex: `admin${length}`,
+    key: `admin${length}`,
+  });
+  return list;
 };
 
 /**
@@ -385,4 +423,4 @@ const getWidth = (width, column) => {
   }
 };
 
-export { getDataSource, getWidth };
+export { getDataSource, getDefaultColumns, getWidth };
