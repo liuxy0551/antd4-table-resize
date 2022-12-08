@@ -1,21 +1,18 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import 'antd/dist/antd.css';
 import './style.css';
 import { Form, Table, Button, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import type { ResizeCallbackData } from 'react-resizable';
 import { VList } from 'virtuallist-antd';
-import { getDataSource, getDefaultColumns, geColumntWidth } from './utils';
 import ResizableTitle from './components/resizableTitle';
+import { dataSource, getDefaultColumns, geColumntWidth } from './utils';
 
 const App: React.FC = () => {
   const tableHeight = 600;
   const [form] = Form.useForm();
   const [columns, setColumns] = useState<ColumnsType>(getDefaultColumns());
   const [result, setResult] = useState([]);
-  const [virtualComponent, setVirtualComponent] = useState(
-    VList({ height: tableHeight })
-  );
 
   const handleResize: Function =
     (index: number) =>
@@ -26,11 +23,6 @@ const App: React.FC = () => {
         width: geColumntWidth(size.width, newColumns[index]),
       };
       setColumns(newColumns);
-
-      console.log(
-        222,
-        document.getElementsByClassName('virtuallist')[0].style.height
-      );
     };
 
   const mergeColumns: ColumnsType = columns.map((col, index) => ({
@@ -38,15 +30,13 @@ const App: React.FC = () => {
     onHeaderCell: (column) => ({
       width: column.width,
       onResize: handleResize(index),
-      onResizeStop: () => {
-        setVirtualComponent(VList({ height: tableHeight }));
-      },
     }),
   }));
 
-  // const virtualComponent = useMemo(() => {
-  //   return VList({ height: tableHeight });
-  // }, []);
+  // 虚拟滚动组件
+  const virtualComponent = useMemo(() => {
+    return VList({ height: tableHeight });
+  }, []);
 
   // 勾选权限
   const handleItemChange = (changedFields) => {
@@ -64,17 +54,9 @@ const App: React.FC = () => {
 
   // 保存按钮
   const handleSave = () => {
-    console.log(
-      111,
-      document.getElementsByClassName('virtuallist')[0].style.height
-    );
-    message.success('保存的数据已打印');
+    message.info('请在 Console 查看保存的数据');
     console.log('保存的数据', result);
   };
-
-  useEffect(() => {
-    // form.setFieldsValue({ table: getDataSource() });
-  }, []);
 
   return (
     <React.Fragment>
@@ -95,7 +77,7 @@ const App: React.FC = () => {
             },
           }}
           columns={mergeColumns}
-          dataSource={getDataSource()}
+          dataSource={dataSource}
           pagination={false}
           scroll={{ y: tableHeight, x: 3300 }}
         />

@@ -396,6 +396,7 @@ const getDataSource = (length = 5) => {
 
   return dataSource;
 };
+const dataSource = getDataSource();
 
 /**
  * 初始化表格列
@@ -458,4 +459,4 @@ const geColumntWidth = (width, column) => {
   }
 };
 
-export { getDataSource, getDefaultColumns, geColumntWidth };
+export { dataSource, getDefaultColumns, geColumntWidth };
