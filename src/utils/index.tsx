@@ -444,10 +444,10 @@ const getDefaultColumns = () => {
 };
 
 /**
- * geColumntWidth 方法可选，使用后可控制列宽的最大最小宽度
+ * geColumnWidth 方法可选，使用后可控制列宽的最大最小宽度
  * column 的 minWidth 和 maxWidth 可以设置列在拖拽时的最大最小宽度
  */
-const geColumntWidth = (width, column) => {
+const geColumnWidth = (width, column) => {
   const minWidth = column.minWidth || 80;
   const maxWidth = column.maxWidth || 1000;
   if (width > maxWidth) {
@@ -459,4 +459,4 @@ const geColumntWidth = (width, column) => {
   }
 };
 
-export { dataSource, getDefaultColumns, geColumntWidth };
+export { dataSource, getDefaultColumns, geColumnWidth };

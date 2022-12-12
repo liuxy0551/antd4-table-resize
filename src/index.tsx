@@ -6,7 +6,7 @@ import type { ColumnsType } from 'antd/es/table';
 import type { ResizeCallbackData } from 'react-resizable';
 import { VList } from 'virtuallist-antd';
 import ResizableTitle from './components/resizableTitle';
-import { dataSource, getDefaultColumns, geColumntWidth } from './utils';
+import { dataSource, getDefaultColumns, geColumnWidth } from './utils';
 
 const App: React.FC = () => {
   const tableHeight = 600;
@@ -20,7 +20,7 @@ const App: React.FC = () => {
       const newColumns = [...columns];
       newColumns[index] = {
         ...newColumns[index],
-        width: geColumntWidth(size.width, newColumns[index]),
+        width: geColumnWidth(size.width, newColumns[index]),
       };
       setColumns(newColumns);
     };
